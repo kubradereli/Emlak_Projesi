@@ -1,0 +1,6 @@
+@Emlak_Projesi_HostAddress = http://localhost:5105
+
+GET {{Emlak_Projesi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
