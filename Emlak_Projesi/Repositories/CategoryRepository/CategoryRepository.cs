@@ -48,9 +48,9 @@ namespace Emlak_Projesi.Repositories.CategoryRepositories
 
         public async Task<GetBYIDCategoryDto> GetCategory(int id)
         {
-            string query = "Select * From Category Where CategoryId=@CategoryID";
+            string query = "Select * From Category Where CategoryID=@CategoryID";
             var paramaters = new DynamicParameters();
-            paramaters.Add("@CategoryId", id);
+            paramaters.Add("@CategoryID", id);
             using (var connection = _context.CreateConnection())
             {
                 var values = await connection.QueryFirstOrDefaultAsync<GetBYIDCategoryDto>(query, paramaters);
