@@ -6,6 +6,7 @@ using Emlak_Projesi.Repositories.EmployeeRepositories;
 using Emlak_Projesi.Repositories.PopularLocationRepositories;
 using Emlak_Projesi.Repositories.ProductRepository;
 using Emlak_Projesi.Repositories.ServiceRepository;
+using Emlak_Projesi.Repositories.StatisticsRepositories;
 using Emlak_Projesi.Repositories.TestimonialRepositories;
 using Emlak_Projesi.Repositories.WhoWeAreRepository;
 
@@ -22,6 +23,7 @@ builder.Services.AddTransient<IBottomGridRepository, BottomGridRepository>();
 builder.Services.AddTransient<IPopularLocationRepository, PopularLocationRepository>();
 builder.Services.AddTransient<ITestimonialRepository, TestimonialRepository>();
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
