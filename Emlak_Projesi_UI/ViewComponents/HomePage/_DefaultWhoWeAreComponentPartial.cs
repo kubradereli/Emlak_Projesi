@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Emlak_Projesi_UI.Dto.WhoWeAreDtos;
+using Emlak_Projesi_UI.Dto.ServiceDtos;
 
 namespace Emlak_Projesi_UI.ViewComponents.HomePage
 {

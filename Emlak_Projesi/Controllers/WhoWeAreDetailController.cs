@@ -32,7 +32,7 @@ namespace Emlak_Projesi.Controllers
             return Ok("Hakkımızda kısmı başarılı bir şekilde eklendi.");
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWhoWeAreDetail(int id)
         {
             _whoWeAreDetailRepository.DeleteWhoWeAreDetail(id);
