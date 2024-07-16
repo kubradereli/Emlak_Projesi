@@ -1,4 +1,5 @@
-﻿using Emlak_Projesi.Repositories.PopularLocationRepositories;
+﻿using Emlak_Projesi.Dtos.PopularLocationDtos;
+using Emlak_Projesi.Repositories.PopularLocationRepositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,6 +20,34 @@ namespace Emlak_Projesi.Controllers
         public async Task<IActionResult> PopularLocationList()
         {
             var value = await _popularLocationRepository.GetAllPopularLocationAsync();
+            return Ok(value);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePopularLocation(CreatePopularLocationDto createPopularLocationDto)
+        {
+            _popularLocationRepository.CreatePopularLocation(createPopularLocationDto);
+            return Ok("Popüler Lokasyonlar kısmı başarılı bir şekilde eklendi.");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeletePopularLocation(int id)
+        {
+            _popularLocationRepository.DeletePopularLocation(id);
+            return Ok("Popüler Lokasyonlar kısmı başarılı bir şekilde silindi");
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdatePopularLocation(UpdatePopularLocationDto updatePopularLocationDto)
+        {
+            _popularLocationRepository.UpdatePopularLocation(updatePopularLocationDto);
+            return Ok("Popüler Lokasyonlar kısmı başarıyla güncellendi");
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetPopularLocation(int id)
+        {
+            var value = await _popularLocationRepository.GetPopularLocation(id);
             return Ok(value);
         }
     }
