@@ -7,5 +7,9 @@ namespace Emlak_Projesi.Repositories.ProductRepository
         Task<List<ResultProductDto>> GetAllProductAsync();
 
         Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync();
+
+        void ProductDealOfTheDayStatusChangeToTrue(int id);
+
+        void ProductDealOfTheDayStatusChangeToFalse(int id);
     }
 }

@@ -25,11 +25,33 @@ namespace Emlak_Projesi.Repositories.ProductRepository
 
         public async Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync()
         {
-            string query = "Select ProductID, Title, Price, City, District, CategoryName, CoverImage, Type, Address From Product inner join Category on Product.ProductCategory=Category.CategoryID";
+            string query = "Select ProductID, Title, Price, City, District, CategoryName, CoverImage, Type, Address, DealOfTheDay From Product inner join Category on Product.ProductCategory=Category.CategoryID";
             using (var conneciton = _context.CreateConnection())
             {
                 var values = await conneciton.QueryAsync<ResultProductWithCategoryDto>(query);
                 return values.ToList();
+            }
+        }
+
+        public async void ProductDealOfTheDayStatusChangeToFalse(int id)
+        {
+            string query = "Update Product set DealOfTheDay=0 Where ProductID=@productID";
+            var paramaters = new DynamicParameters();
+            paramaters.Add("@productID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, paramaters);
+            }
+        }
+
+        public async void ProductDealOfTheDayStatusChangeToTrue(int id)
+        {
+            string query = "Update Product set DealOfTheDay=1 Where ProductID=@productID";
+            var paramaters = new DynamicParameters();
+            paramaters.Add("@productID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                await connection.ExecuteAsync(query, paramaters);
             }
         }
     }
