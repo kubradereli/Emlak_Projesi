@@ -11,5 +11,7 @@ namespace Emlak_Projesi.Repositories.ProductRepository
         void ProductDealOfTheDayStatusChangeToTrue(int id);
 
         void ProductDealOfTheDayStatusChangeToFalse(int id);
+
+        Task<List<ResultLast5ProductWithCategoryDto>> GetLast5ProductAsync();
     }
 }

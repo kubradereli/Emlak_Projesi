@@ -2,12 +2,14 @@ using Emlak_Projesi.Models.DapperContext;
 using Emlak_Projesi.Repositories.BottomGridRepositories;
 using Emlak_Projesi.Repositories.BottomGridRepository;
 using Emlak_Projesi.Repositories.CategoryRepositories;
+using Emlak_Projesi.Repositories.ContactRepositories;
 using Emlak_Projesi.Repositories.EmployeeRepositories;
 using Emlak_Projesi.Repositories.PopularLocationRepositories;
 using Emlak_Projesi.Repositories.ProductRepository;
 using Emlak_Projesi.Repositories.ServiceRepository;
 using Emlak_Projesi.Repositories.StatisticsRepositories;
 using Emlak_Projesi.Repositories.TestimonialRepositories;
+using Emlak_Projesi.Repositories.ToDoListRepositories;
 using Emlak_Projesi.Repositories.WhoWeAreRepository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +26,8 @@ builder.Services.AddTransient<IPopularLocationRepository, PopularLocationReposit
 builder.Services.AddTransient<ITestimonialRepository, TestimonialRepository>();
 builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
+builder.Services.AddTransient<IContactRepository, ContactRepository>();
+builder.Services.AddTransient<IToDoListRepository, ToDoListRepository>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
