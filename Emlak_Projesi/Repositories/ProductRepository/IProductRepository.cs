@@ -5,6 +5,7 @@ namespace Emlak_Projesi.Repositories.ProductRepository
     public interface IProductRepository
     {
         Task<List<ResultProductDto>> GetAllProductAsync();
+        Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsync(int id);
 
         Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync();
 

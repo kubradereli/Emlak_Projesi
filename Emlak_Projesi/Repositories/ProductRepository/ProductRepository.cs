@@ -43,6 +43,18 @@ namespace Emlak_Projesi.Repositories.ProductRepository
             }
         }
 
+        public async Task<List<ResultProductAdvertListWithCategoryByEmployeeDto>> GetProductAdvertListByEmployeeAsync(int id)
+        {
+            string query = "Select ProductID, Title, Price, City, District, CategoryName, CoverImage, Type, Address, DealOfTheDay From Product inner join Category on Product.ProductCategory=Category.CategoryID Where EmployeeID=@employeeID";
+            var paramaters = new DynamicParameters();
+            paramaters.Add("@employeeID", id);
+            using (var conneciton = _context.CreateConnection())
+            {
+                var values = await conneciton.QueryAsync<ResultProductAdvertListWithCategoryByEmployeeDto>(query, paramaters);
+                return values.ToList();
+            }
+        }
+
         public async void ProductDealOfTheDayStatusChangeToFalse(int id)
         {
             string query = "Update Product set DealOfTheDay=0 Where ProductID=@productID";
