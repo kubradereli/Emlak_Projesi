@@ -6,7 +6,7 @@ namespace Emlak_Projesi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TokenController : ControllerBase
+    public class TokenCreateController : ControllerBase
     {
         [HttpPost]
         public IActionResult CreateToken(GetCheckAppUserViewModel model)

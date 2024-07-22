@@ -5,6 +5,9 @@ using Emlak_Projesi.Repositories.BottomGridRepository;
 using Emlak_Projesi.Repositories.CategoryRepositories;
 using Emlak_Projesi.Repositories.ContactRepositories;
 using Emlak_Projesi.Repositories.EmployeeRepositories;
+using Emlak_Projesi.Repositories.EstateAgentRepositories.DasboardRepositories.ChartRepositories;
+using Emlak_Projesi.Repositories.EstateAgentRepositories.DasboardRepositories.LastProductsRepositories;
+using Emlak_Projesi.Repositories.EstateAgentRepositories.DasboardRepositories.StatisticRepositories;
 using Emlak_Projesi.Repositories.PopularLocationRepositories;
 using Emlak_Projesi.Repositories.ProductRepository;
 using Emlak_Projesi.Repositories.ServiceRepository;
@@ -29,6 +32,9 @@ builder.Services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddTransient<IStatisticsRepository, StatisticsRepository>();
 builder.Services.AddTransient<IContactRepository, ContactRepository>();
 builder.Services.AddTransient<IToDoListRepository, ToDoListRepository>();
+builder.Services.AddTransient<IStatisticRepository, StatisticRepository>();
+builder.Services.AddTransient<IChartRepository, ChartRepository>();
+builder.Services.AddTransient<ILastProductsRepository, LastProductsRepository>();
 
 builder.Services.AddCors(opt =>
 {

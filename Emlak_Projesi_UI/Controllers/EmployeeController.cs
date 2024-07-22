@@ -1,32 +1,43 @@
 ﻿using Emlak_Projesi_UI.Dto.EmployeeDtos;
+using Emlak_Projesi_UI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
 
 namespace Emlak_Projesi_UI.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
-        public readonly IHttpClientFactory _httpClientFactory;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILoginService _loginService;
 
-        public EmployeeController(IHttpClientFactory httpClientFactory)
+        public EmployeeController(IHttpClientFactory httpClientFactory, ILoginService loginService)
         {
             _httpClientFactory = httpClientFactory;
+            _loginService = loginService;
         }
 
         public async Task<IActionResult> Index()
         {
-            var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Employees");
-            if (responseMessage.IsSuccessStatusCode)
+            var user = User.Claims;
+            var userId = _loginService.GetUserId;
+
+            var token = User.Claims.FirstOrDefault(x => x.Type == "realestatetoken")?.Value;
+            if (token != null)
             {
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultEmployeeDto>>(jsonData);
-                return View(values);
+                var client = _httpClientFactory.CreateClient();
+                var responseMessage = await client.GetAsync("https://localhost:7099/api/Employees");
+                if (responseMessage.IsSuccessStatusCode)
+                {
+                    var jsonData = await responseMessage.Content.ReadAsStringAsync();
+                    var values = JsonConvert.DeserializeObject<List<ResultEmployeeDto>>(jsonData);
+                    return View(values);
+                }
             }
             return View();
         }
-
 
         [HttpGet]
         public IActionResult CreateEmployee()
