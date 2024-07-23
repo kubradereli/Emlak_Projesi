@@ -1,4 +1,5 @@
-﻿using Emlak_Projesi.Repositories.ProductRepository;
+﻿using Emlak_Projesi.Dtos.ProductDtos;
+using Emlak_Projesi.Repositories.ProductRepository;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -50,11 +51,25 @@ namespace Emlak_Projesi.Controllers
             return Ok(values);
         }
 
-        [HttpGet("ProductAdvertsListByEmployeeId")]
-        public async Task<IActionResult> ProductAdvertsListByEmployeeId(int id)
+        [HttpGet("ProductAdvertsListByEmployeeIdByTrue")]
+        public async Task<IActionResult> ProductAdvertsListByEmployeeIdByTrue(int id)
         {
-            var values = await _productRepository.GetProductAdvertListByEmployeeAsync(id);
+            var values = await _productRepository.GetProductAdvertListByEmployeeAsyncByTrue(id);
             return Ok(values);
+        }
+
+        [HttpGet("ProductAdvertsListByEmployeeIdByFalse")]
+        public async Task<IActionResult> ProductAdvertsListByEmployeeIdByFalse(int id)
+        {
+            var values = await _productRepository.GetProductAdvertListByEmployeeAsyncByFalse(id);
+            return Ok(values);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProduct(CreateProductDto createProductDto)
+        {
+            await _productRepository.CreateProduct(createProductDto);
+            return Ok("İlan Başarıyla Eklendi");
         }
     }
 }

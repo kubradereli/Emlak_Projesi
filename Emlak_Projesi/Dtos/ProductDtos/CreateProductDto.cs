@@ -1,4 +1,4 @@
-﻿namespace Emlak_Projesi_UI.Dto.ProductDtos
+﻿namespace Emlak_Projesi.Dtos.ProductDtos
 {
     public class CreateProductDto
     {
