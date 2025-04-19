@@ -1,5 +1,6 @@
 using Emlak_Projesi.Hubs;
 using Emlak_Projesi.Models.DapperContext;
+using Emlak_Projesi.Repositories.AppUserRepositories;
 using Emlak_Projesi.Repositories.BottomGridRepositories;
 using Emlak_Projesi.Repositories.BottomGridRepository;
 using Emlak_Projesi.Repositories.CategoryRepositories;
@@ -10,7 +11,9 @@ using Emlak_Projesi.Repositories.EstateAgentRepositories.DasboardRepositories.La
 using Emlak_Projesi.Repositories.EstateAgentRepositories.DasboardRepositories.StatisticRepositories;
 using Emlak_Projesi.Repositories.MessageRepositories;
 using Emlak_Projesi.Repositories.PopularLocationRepositories;
+using Emlak_Projesi.Repositories.ProductImageRepositories;
 using Emlak_Projesi.Repositories.ProductRepository;
+using Emlak_Projesi.Repositories.PropertyAmenityPepositories;
 using Emlak_Projesi.Repositories.ServiceRepository;
 using Emlak_Projesi.Repositories.StatisticsRepositories;
 using Emlak_Projesi.Repositories.TestimonialRepositories;
@@ -37,6 +40,9 @@ builder.Services.AddTransient<IStatisticRepository, StatisticRepository>();
 builder.Services.AddTransient<IChartRepository, ChartRepository>();
 builder.Services.AddTransient<ILastProductsRepository, LastProductsRepository>();
 builder.Services.AddTransient<IMessageRepository, MessageRepository>();
+builder.Services.AddTransient<IProductImageRepository, ProductImageRepository>();
+builder.Services.AddTransient<IAppUserRepository, AppUserRepository>();
+builder.Services.AddTransient<IPropertyAmenityRepository, PropertyAmenityRepository>();
 
 builder.Services.AddCors(opt =>
 {

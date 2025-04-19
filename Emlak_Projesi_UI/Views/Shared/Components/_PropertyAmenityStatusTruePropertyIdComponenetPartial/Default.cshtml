@@ -1,0 +1,11 @@
+﻿@model List<Emlak_Projesi_UI.Dto.PropertyAmenityDtos.ResultPropertyAmenityByStatusTrueDto>
+
+<div class="single-bg-white">
+    <h3 class="post-content-title mb-4">Kolaylıklar</h3>
+    <ul class="details-list">
+        @foreach(var item in Model)
+        {
+            <li><strong>@item.Title </strong></li>
+        }
+    </ul>
+</div>

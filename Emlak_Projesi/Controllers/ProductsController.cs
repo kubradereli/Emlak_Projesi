@@ -71,5 +71,12 @@ namespace Emlak_Projesi.Controllers
             await _productRepository.CreateProduct(createProductDto);
             return Ok("İlan Başarıyla Eklendi");
         }
+
+        [HttpGet("GetProductByProductId")]
+        public async Task<IActionResult> GetProductByProductId(int id)
+        {
+            var values = await _productRepository.GetProductByProductId(id);
+            return Ok(values);
+        }       
     }
 }

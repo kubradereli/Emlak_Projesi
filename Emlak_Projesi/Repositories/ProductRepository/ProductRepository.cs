@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using Emlak_Projesi.Dtos.ProductDetailDtos;
 using Emlak_Projesi.Dtos.ProductDtos;
 using Emlak_Projesi.Models.DapperContext;
 
@@ -90,7 +91,31 @@ namespace Emlak_Projesi.Repositories.ProductRepository
             }
         }
 
-        public async void ProductDealOfTheDayStatusChangeToFalse(int id)
+        public async Task<GetProductByProductIdDto> GetProductByProductId(int id)
+        {
+            string query = "Select ProductID, Title, Price, City, Description, District, CategoryName, CoverImage, Type, Address, DealOfTheDay, AdvertisementDate From Product inner join Category on Product.ProductCategory=Category.CategoryID Where ProductID=@productID";
+            var paramaters = new DynamicParameters();
+            paramaters.Add("@productID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<GetProductByProductIdDto>(query, paramaters);
+                return values.FirstOrDefault();
+            }
+        }
+
+        public async Task<GetProductDetailByIdDto> GetProductDetailByProductId(int id)
+        {
+            string query = "Select * From ProductDetails Where ProductID=@productID";
+            var paramaters = new DynamicParameters();
+            paramaters.Add("@productID", id);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<GetProductDetailByIdDto>(query, paramaters);
+                return values.FirstOrDefault();
+            }
+        }
+
+        public async Task ProductDealOfTheDayStatusChangeToFalse(int id)
         {
             string query = "Update Product set DealOfTheDay=0 Where ProductID=@productID";
             var paramaters = new DynamicParameters();
@@ -101,7 +126,7 @@ namespace Emlak_Projesi.Repositories.ProductRepository
             }
         }
 
-        public async void ProductDealOfTheDayStatusChangeToTrue(int id)
+        public async Task ProductDealOfTheDayStatusChangeToTrue(int id)
         {
             string query = "Update Product set DealOfTheDay=1 Where ProductID=@productID";
             var paramaters = new DynamicParameters();
