@@ -5,18 +5,23 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlak_Projesi", "Emlak_Projesi\Emlak_Projesi.csproj", "{420D4FC3-684D-4504-B647-6CC6FFEE7472}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emlak_Projesi_UI", "Emlak_Projesi_UI\Emlak_Projesi_UI.csproj", "{DCDB9431-6AEF-4002-A430-2820AC71E7C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emlak_Projesi_UI", "Emlak_Projesi_UI\Emlak_Projesi_UI.csproj", "{DCDB9431-6AEF-4002-A430-2820AC71E7C6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		aa|Any CPU = aa|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{420D4FC3-684D-4504-B647-6CC6FFEE7472}.aa|Any CPU.ActiveCfg = aa|Any CPU
+		{420D4FC3-684D-4504-B647-6CC6FFEE7472}.aa|Any CPU.Build.0 = aa|Any CPU
 		{420D4FC3-684D-4504-B647-6CC6FFEE7472}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{420D4FC3-684D-4504-B647-6CC6FFEE7472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{420D4FC3-684D-4504-B647-6CC6FFEE7472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{420D4FC3-684D-4504-B647-6CC6FFEE7472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DCDB9431-6AEF-4002-A430-2820AC71E7C6}.aa|Any CPU.ActiveCfg = aa|Any CPU
+		{DCDB9431-6AEF-4002-A430-2820AC71E7C6}.aa|Any CPU.Build.0 = aa|Any CPU
 		{DCDB9431-6AEF-4002-A430-2820AC71E7C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCDB9431-6AEF-4002-A430-2820AC71E7C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCDB9431-6AEF-4002-A430-2820AC71E7C6}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -136,5 +136,19 @@ namespace Emlak_Projesi.Repositories.ProductRepository
                 await connection.ExecuteAsync(query, paramaters);
             }
         }
+
+        public async Task<List<ResultProductWithSearchListDto>> ResultProductWithSearchList(string searchKeyValue, int propertyCategoryId, string city)
+        {
+            string query = "Select * From Product Where Title Like'%" + @searchKeyValue + "%' And ProductCategory=@propertyCategoryId And City=@city";
+            var paramaters = new DynamicParameters();
+            paramaters.Add("@searchKeyValue", searchKeyValue);
+            paramaters.Add("@propertyCategoryId", propertyCategoryId);
+            paramaters.Add("@city", city);
+            using (var connection = _context.CreateConnection())
+            {
+                var values = await connection.QueryAsync<ResultProductWithSearchListDto>(query, paramaters);
+                return values.ToList();
+            }
+        }
     }
 }
