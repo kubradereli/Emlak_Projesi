@@ -51,6 +51,13 @@ namespace Emlak_Projesi.Controllers
             return Ok(values);
         }
 
+        [HttpGet("Last3ProductList")]
+        public async Task<IActionResult> Last3ProductList()
+        {
+            var values = await _productRepository.GetLast3ProductAsync();
+            return Ok(values);
+        }
+
         [HttpGet("ProductAdvertsListByEmployeeIdByTrue")]
         public async Task<IActionResult> ProductAdvertsListByEmployeeIdByTrue(int id)
         {
@@ -83,6 +90,13 @@ namespace Emlak_Projesi.Controllers
         public async Task<IActionResult> ResultProductWithSearchList(string searchKeyValue, int propertyCategoryId, string city)
         {
             var values = await _productRepository.ResultProductWithSearchList(searchKeyValue, propertyCategoryId, city);
+            return Ok(values);
+        }
+
+        [HttpGet("GetProductDealOfTheDayTrueWithCategory")]
+        public async Task<IActionResult> GetProductDealOfTheDayTrueWithCategory()
+        {
+            var values = await _productRepository.GetProductDealOfTheDayTrueWithCategoryAsync();
             return Ok(values);
         }
     }

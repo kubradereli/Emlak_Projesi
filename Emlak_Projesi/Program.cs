@@ -16,6 +16,7 @@ using Emlak_Projesi.Repositories.ProductRepository;
 using Emlak_Projesi.Repositories.PropertyAmenityPepositories;
 using Emlak_Projesi.Repositories.ServiceRepository;
 using Emlak_Projesi.Repositories.StatisticsRepositories;
+using Emlak_Projesi.Repositories.SubFeatureRepositories;
 using Emlak_Projesi.Repositories.TestimonialRepositories;
 using Emlak_Projesi.Repositories.ToDoListRepositories;
 using Emlak_Projesi.Repositories.WhoWeAreRepository;
@@ -43,6 +44,7 @@ builder.Services.AddTransient<IMessageRepository, MessageRepository>();
 builder.Services.AddTransient<IProductImageRepository, ProductImageRepository>();
 builder.Services.AddTransient<IAppUserRepository, AppUserRepository>();
 builder.Services.AddTransient<IPropertyAmenityRepository, PropertyAmenityRepository>();
+builder.Services.AddTransient<ISubFeaturesRepository, SubFeaturesRepository>();
 
 builder.Services.AddCors(opt =>
 {
