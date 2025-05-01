@@ -4,13 +4,13 @@ namespace Emlak_Projesi.Repositories.EmployeeRepositories
 {
     public interface IEmployeeRepository
     {
-        Task<List<ResultEmployeeDto>> GetAllEmployeeAsync();
+        Task<List<ResultEmployeeDto>> GetAllEmployee();
 
-        void CreateEmployee(CreateEmployeeDto createEmployeeDto);
+        Task CreateEmployee(CreateEmployeeDto createEmployeeDto);
 
-        void DeleteEmployee(int id);
+        Task DeleteEmployee(int id);
 
-        void UpdateEmployee(UpdateEmployeeDto updateEmployeeDto);
+        Task UpdateEmployee(UpdateEmployeeDto updateEmployeeDto);
 
         Task<GetByIDEmployeeDto> GetEmployee(int id);
     }

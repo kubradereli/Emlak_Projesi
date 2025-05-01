@@ -19,7 +19,7 @@ namespace Emlak_Projesi.Controllers
         [HttpGet]
         public async Task<IActionResult> ToDoListList()
         {
-            var values = await _toDoListRepository.GetAllToDoListAsync();
+            var values = await _toDoListRepository.GetAllToDoList();
             return Ok(values);
         }
     }

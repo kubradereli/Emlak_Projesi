@@ -4,13 +4,13 @@ namespace Emlak_Projesi.Repositories.CategoryRepositories
 {
     public interface ICategoryRepository
     {
-        Task<List<ResultCategoryDto>> GetAllCategoryAsync();
+        Task<List<ResultCategoryDto>> GetAllCategory();
 
-        void CreateCategory(CreateCategoryDto categoryDto);
+        Task CreateCategory(CreateCategoryDto categoryDto);
 
-        void DeleteCategory(int id);
+        Task DeleteCategory(int id);
 
-        void UpdateCategory(UpdateCategoryDto categoryDto);
+        Task UpdateCategory(UpdateCategoryDto categoryDto);
 
         Task<GetBYIDCategoryDto> GetCategory(int id);
     }

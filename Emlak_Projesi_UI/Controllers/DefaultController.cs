@@ -1,5 +1,7 @@
 ﻿using Emlak_Projesi_UI.Dto.CategoryDtos;
+using Emlak_Projesi_UI.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 
 namespace Emlak_Projesi_UI.Controllers
@@ -7,15 +9,18 @@ namespace Emlak_Projesi_UI.Controllers
     public class DefaultController : Controller
     {
         public readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiSettings _apiSettings;
 
-        public DefaultController(IHttpClientFactory httpClientFactory)
+        public DefaultController(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
+            _apiSettings = apiSettings.Value;
         }
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Categories");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Categories");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -29,7 +34,8 @@ namespace Emlak_Projesi_UI.Controllers
         public async Task<PartialViewResult> PartialSearch()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Categories");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Categories");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

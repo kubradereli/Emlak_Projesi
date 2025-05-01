@@ -4,13 +4,13 @@ namespace Emlak_Projesi.Repositories.ToDoListRepositories
 {
     public interface IToDoListRepository
     {
-        Task<List<ResultToDoListDto>> GetAllToDoListAsync();
+        Task<List<ResultToDoListDto>> GetAllToDoList();
 
-        void CreateToDoList(CreateToDoListDto categoryDto);
+        Task CreateToDoList(CreateToDoListDto categoryDto);
 
-        void DeleteToDoList(int id);
+        Task DeleteToDoList(int id);
 
-        void UpdateToDoList(UpdateToDoListDto categoryDto);
+        Task UpdateToDoList(UpdateToDoListDto categoryDto);
 
         Task<GetBYIDToDoListDto> GetToDoList(int id);
     }

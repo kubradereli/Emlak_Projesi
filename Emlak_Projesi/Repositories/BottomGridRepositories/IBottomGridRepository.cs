@@ -4,13 +4,13 @@ namespace Emlak_Projesi.Repositories.BottomGridRepository
 {
     public interface IBottomGridRepository
     {
-        Task<List<ResultBottomGridDto>> GetAllBottomGridAsync();
+        Task<List<ResultBottomGridDto>> GetAllBottomGrid();
 
-        void CreateBottomGrid(CreateBottomGridDto createBottomGridDto);
+        Task CreateBottomGrid(CreateBottomGridDto createBottomGridDto);
 
-        void DeleteBottomGrid(int id);
+        Task DeleteBottomGrid(int id);
 
-        void UpdateBottomGrid(UpdateBottomGridDto updateBottomGridDto);
+        Task UpdateBottomGrid(UpdateBottomGridDto updateBottomGridDto);
 
         Task<GetBottomGridDto> GetBottomGrid(int id);
     }

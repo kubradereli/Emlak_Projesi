@@ -8,9 +8,9 @@ namespace Emlak_Projesi.Repositories.ContactRepositories
 
         Task<List<Last4ContactResultDto>> GetLAst4Contact();
 
-        void CreateContact(CreateContactDto createContactDto);
+        Task CreateContact(CreateContactDto createContactDto);
 
-        void DeleteContact(int id);
+        Task DeleteContact(int id);
 
         Task<GetByIDContactDto> GetContact(int id);
     }

@@ -4,13 +4,13 @@ namespace Emlak_Projesi.Repositories.WhoWeAreRepository
 {
     public interface IWhoWeAreDetailRepository
     {
-        Task<List<ResultWhoWeAreDetailDto>> GetAllWhoWeAreDetailAsync();
+        Task<List<ResultWhoWeAreDetailDto>> GetAllWhoWeAreDetail();
 
-        void CreateWhoWeAreDetail(CreateWhoWeAreDetailDto createWhoWeAreDetailDto);
+        Task CreateWhoWeAreDetail(CreateWhoWeAreDetailDto createWhoWeAreDetailDto);
 
-        void DeleteWhoWeAreDetail(int id);
+        Task DeleteWhoWeAreDetail(int id);
 
-        void UpdateWhoWeAreDetail(UpdateWhoWeAreDetailDto updateWhoWeAreDetailDto);
+        Task UpdateWhoWeAreDetail(UpdateWhoWeAreDetailDto updateWhoWeAreDetailDto);
 
         Task<GetByIDWhoWeAreDetailDto> GetWhoWeAreDetail(int id);
     }

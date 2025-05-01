@@ -49,7 +49,7 @@ namespace Emlak_Projesi.Repositories.ProductRepository
 
         public async Task<List<ResultProductWithCategoryDto>> GetAllProductWithCategoryAsync()
         {
-            string query = "Select ProductID, Title, Price, City, District, CategoryName, CoverImage, Type, Address, DealOfTheDay From Product inner join Category on Product.ProductCategory=Category.CategoryID";
+            string query = "Select ProductID, Title, Price, City, District, CategoryName, CoverImage, Type, Address, DealOfTheDay,SlugUrl From Product inner join Category on Product.ProductCategory=Category.CategoryID";
             using (var conneciton = _context.CreateConnection())
             {
                 var values = await conneciton.QueryAsync<ResultProductWithCategoryDto>(query);
@@ -103,7 +103,7 @@ namespace Emlak_Projesi.Repositories.ProductRepository
 
         public async Task<GetProductByProductIdDto> GetProductByProductId(int id)
         {
-            string query = "Select ProductID, Title, Price, City, Description, District, CategoryName, CoverImage, Type, Address, DealOfTheDay, AdvertisementDate From Product inner join Category on Product.ProductCategory=Category.CategoryID Where ProductID=@productID";
+            string query = "Select ProductID, Title, Price, City, Description, District, CategoryName, CoverImage, Type, Address, DealOfTheDay, AdvertisementDate, SlugUrl From Product inner join Category on Product.ProductCategory=Category.CategoryID Where ProductID=@productID";
             var paramaters = new DynamicParameters();
             paramaters.Add("@productID", id);
             using (var connection = _context.CreateConnection())

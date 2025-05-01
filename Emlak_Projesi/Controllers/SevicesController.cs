@@ -1,6 +1,5 @@
 ﻿using Emlak_Projesi.Dtos.ServiceDtos;
 using Emlak_Projesi.Repositories.ServiceRepository;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Emlak_Projesi.Controllers
@@ -19,28 +18,28 @@ namespace Emlak_Projesi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetServiceList()
         {
-            var value = await _serviceRepository.GetAllServiceAsync();
+            var value = await _serviceRepository.GetAllService();
             return Ok(value);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateService(CreateServiceDto createServiceDto)
         {
-            _serviceRepository.CreateService(createServiceDto);
+            await _serviceRepository.CreateService(createServiceDto);
             return Ok("Hizmet kısmı başarılı bir şekilde eklendi.");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteService(int id)
         {
-            _serviceRepository.DeleteService(id);
+            await _serviceRepository.DeleteService(id);
             return Ok("Hizmet kısmı başarılı bir şekilde silindi");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateService(UpdateServiceDto updateServiceDto)
         {
-            _serviceRepository.UpdateService(updateServiceDto);
+            await _serviceRepository.UpdateService(updateServiceDto);
             return Ok("Hizmet kısmı başarıyla güncellendi");
         }
 

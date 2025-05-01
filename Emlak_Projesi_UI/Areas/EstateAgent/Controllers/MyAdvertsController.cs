@@ -1,8 +1,10 @@
 ﻿using Emlak_Projesi_UI.Dto.CategoryDtos;
 using Emlak_Projesi_UI.Dto.ProductDtos;
+using Emlak_Projesi_UI.Models;
 using Emlak_Projesi_UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Text;
 
@@ -13,18 +15,21 @@ namespace Emlak_Projesi_UI.Areas.EstateAgent.Controllers
     {
         public readonly IHttpClientFactory _httpClientFactory;
         public readonly ILoginService _loginService;
+        private readonly ApiSettings _apiSettings;
 
-        public MyAdvertsController(IHttpClientFactory httpClientFactory, ILoginService loginService)
+        public MyAdvertsController(IHttpClientFactory httpClientFactory, ILoginService loginService, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
             _loginService = loginService;
+            _apiSettings = apiSettings.Value;
         }
 
         public async Task<IActionResult> ActiveAdverts()
         {
             var id = _loginService.GetUserId;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Products/ProductAdvertsListByEmployeeIdByTrue?id=" + id);
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Products/ProductAdvertsListByEmployeeIdByTrue?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -38,7 +43,8 @@ namespace Emlak_Projesi_UI.Areas.EstateAgent.Controllers
         {
             var id = _loginService.GetUserId;
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Products/ProductAdvertsListByEmployeeIdByFalse?id=" + id);
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Products/ProductAdvertsListByEmployeeIdByFalse?id=" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -52,7 +58,8 @@ namespace Emlak_Projesi_UI.Areas.EstateAgent.Controllers
         public async Task<IActionResult> CreateAdvert()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/Categories");
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
+            var responseMessage = await client.GetAsync("Categories");
 
             var jsonData = await responseMessage.Content.ReadAsStringAsync();
             var values = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(jsonData);
@@ -80,9 +87,10 @@ namespace Emlak_Projesi_UI.Areas.EstateAgent.Controllers
             createProductDto.EmployeeID = int.Parse(id);
 
             var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
             var jsonData = JsonConvert.SerializeObject(createProductDto);
             StringContent stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7099/api/Products", stringContent);
+            var responseMessage = await client.PostAsync("Products", stringContent);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");

@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Emlak_Projesi.Dtos.CategoryDtos;
 using Emlak_Projesi.Dtos.EmployeeDtos;
 using Emlak_Projesi.Models.DapperContext;
 
@@ -14,7 +13,7 @@ namespace Emlak_Projesi.Repositories.EmployeeRepositories
             _context = context;
         }
 
-        public async void CreateEmployee(CreateEmployeeDto createEmployeeDto)
+        public async Task CreateEmployee(CreateEmployeeDto createEmployeeDto)
         {
             string query = "insert into Employee (Name, Title, Mail, PhoneNumber, ImageUrl, Status) values (@name, @title, @mail, @phoneNumber, @imageUrl, @status)";
             var paramaters = new DynamicParameters();
@@ -30,7 +29,7 @@ namespace Emlak_Projesi.Repositories.EmployeeRepositories
             }
         }
 
-        public async void DeleteEmployee(int id)
+        public async Task DeleteEmployee(int id)
         {
             string query = "Delete From Employee Where EmployeeID=@employeeID";
             var paramaters = new DynamicParameters();
@@ -41,7 +40,7 @@ namespace Emlak_Projesi.Repositories.EmployeeRepositories
             }
         }
 
-        public async Task<List<ResultEmployeeDto>> GetAllEmployeeAsync()
+        public async Task<List<ResultEmployeeDto>> GetAllEmployee()
         {
             string query = "Select * From Employee";
             using (var connection = _context.CreateConnection())
@@ -63,7 +62,7 @@ namespace Emlak_Projesi.Repositories.EmployeeRepositories
             }
         }
 
-        public async void UpdateEmployee(UpdateEmployeeDto updateEmployeeDto)
+        public async Task UpdateEmployee(UpdateEmployeeDto updateEmployeeDto)
         {
             string query = "Update Employee set Name=@name, Title=@title, Mail=@mail, PhoneNumber=@phoneNumber, ImageUrl=@imageUrl, Status=@status Where EmployeeID=@employeeID";
             var paramaters = new DynamicParameters();

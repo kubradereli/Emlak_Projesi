@@ -13,17 +13,17 @@ namespace Emlak_Projesi.Repositories.ToDoListRepositories
             _context = context;
         }
 
-        public void CreateToDoList(CreateToDoListDto categoryDto)
+        public Task CreateToDoList(CreateToDoListDto categoryDto)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteToDoList(int id)
+        public Task DeleteToDoList(int id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<List<ResultToDoListDto>> GetAllToDoListAsync()
+        public async Task<List<ResultToDoListDto>> GetAllToDoList()
         {
             string query = "Select * From ToDoList";
             using (var connection = _context.CreateConnection())
@@ -38,7 +38,7 @@ namespace Emlak_Projesi.Repositories.ToDoListRepositories
             throw new NotImplementedException();
         }
 
-        public void UpdateToDoList(UpdateToDoListDto categoryDto)
+        public Task UpdateToDoList(UpdateToDoListDto categoryDto)
         {
             throw new NotImplementedException();
         }

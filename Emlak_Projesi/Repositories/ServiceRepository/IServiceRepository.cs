@@ -4,13 +4,13 @@ namespace Emlak_Projesi.Repositories.ServiceRepository
 {
     public interface IServiceRepository
     {
-        Task<List<ResultServiceDto>> GetAllServiceAsync();
+        Task<List<ResultServiceDto>> GetAllService();
 
-        void CreateService(CreateServiceDto serviceDto);
+        Task CreateService(CreateServiceDto serviceDto);
 
-        void DeleteService(int id);
+        Task DeleteService(int id);
 
-        void UpdateService(UpdateServiceDto serviceDto);
+        Task UpdateService(UpdateServiceDto serviceDto);
 
         Task<GetByIDServiceDto> GetService(int id);
     }

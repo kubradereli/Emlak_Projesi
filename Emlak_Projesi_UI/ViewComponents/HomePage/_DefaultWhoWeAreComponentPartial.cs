@@ -2,25 +2,31 @@
 using Newtonsoft.Json;
 using Emlak_Projesi_UI.Dto.WhoWeAreDtos;
 using Emlak_Projesi_UI.Dto.ServiceDtos;
+using Emlak_Projesi_UI.Models;
+using Microsoft.Extensions.Options;
 
 namespace Emlak_Projesi_UI.ViewComponents.HomePage
 {
     public class _DefaultWhoWeAreComponentPartial : ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ApiSettings _apiSettings;
 
-        public _DefaultWhoWeAreComponentPartial(IHttpClientFactory httpClientFactory)
+        public _DefaultWhoWeAreComponentPartial(IHttpClientFactory httpClientFactory, IOptions<ApiSettings> apiSettings)
         {
             _httpClientFactory = httpClientFactory;
+            _apiSettings = apiSettings.Value;
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri(_apiSettings.BaseUrl);
             var client2 = _httpClientFactory.CreateClient();
+            client2.BaseAddress = new Uri(_apiSettings.BaseUrl);
 
-            var responseMessage = await client.GetAsync("https://localhost:7099/api/WhoWeAreDetail");
-            var responseMessage2 = await client2.GetAsync("https://localhost:7099/api/Sevices");
+            var responseMessage = await client.GetAsync("WhoWeAreDetail");
+            var responseMessage2 = await client2.GetAsync("Sevices");
 
             if (responseMessage.IsSuccessStatusCode && responseMessage2.IsSuccessStatusCode)
             {
